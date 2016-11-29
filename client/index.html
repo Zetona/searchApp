@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+	Key:
+	<input type="text" id="inputKey" placeholder="Key">
+	Value:
+	<input type="text" id="inputValue" placeholder="Value">
+
+	<button type="button" onclick="store()">Store</button><br><br><br>
+
+	Search Key:
+	<input type="text" id="inputSearchKey" placeholder="SearchKey">
+	<button type="button" onclick="search()">Search</button><br><br><br>
+
+
+	<script src="http://code.jquery.com/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript">
+		function store(){
+			var keyValue = {
+				"key": document.getElementById("inputKey").value,
+				"value": document.getElementById("inputValue").value
+			};
+			$.post("store", keyValue, function (response) {
+				console.log("Stored Key:" + JSON.stringify(response));
+			});
+		}
+
+		function search(){
+			var key = {
+				"key": document.getElementById("inputSearchKey").value
+			};
+			$.post("search", key, function (response) {
+				console.log("Response:" + JSON.stringify(response));
+			});
+		}
+
+	</script>
+</body>
+</html>
